@@ -10,7 +10,7 @@ currentHour = datetime.now().hour
 def isDuringDay(dayStart, nightStart, currentTime):
     # If check time is not given, default to current UTC time
     if dayStart < nightStart:
-        return currentTime >= dayStart and currentTime <= nightStart
+        return currentTime >= dayStart and currentTime < nightStart
     else: # crosses midnight
         return currentTime >= dayStart or currentTime <= nightStart
 
