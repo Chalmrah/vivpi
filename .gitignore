@@ -1,4 +1,4 @@
 tempWebpage/
 boot.py
-settings.json
+config.json
 __pycache__/

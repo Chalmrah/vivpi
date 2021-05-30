@@ -71,12 +71,12 @@ def validateConfig(settings):
 def load():
     dir = os.path.dirname(__file__)
 
-    with open(os.path.join(dir, '..', 'settings.json'), mode='r', encoding='utf-8') as f:
+    with open(os.path.join(dir, '..', 'config.json'), mode='r', encoding='utf-8') as f:
         return json.load(f)
 
 def write(settings):
     dir = os.path.dirname(__file__)
 
-    with open(os.path.join(dir, '..', 'settings.json'),'w') as f:
+    with open(os.path.join(dir, '..', 'config.json'),'w') as f:
         json.dump(settings, f, indent=4)
     return "Settings updated"

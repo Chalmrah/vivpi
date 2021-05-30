@@ -51,7 +51,7 @@ From the sensor side:
 ## Configuration
 
 * **IMPORTANT NOTE:** All temperatures are in Celcius!
-* All configuration of the vivpi is done within the ``settings.json`` file
+* All configuration of the vivpi is done within the ``config.json`` file
 * The configuration is validated everytime the server runs, which is configured to run every 20 seconds. If it fails the script will stop running and error out.
 * The VivPi will use the hot side sensor to validate whether the tank is hot or humid enough. The cold sensor is just to collect information about the other side of the tank.
 * If you have only a mister in your system, you can set the foggers switch number to the same as the mister and it will ignore the mister switch entirely.
