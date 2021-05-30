@@ -66,3 +66,4 @@ From the sensor side:
 * You can pull json from the ESP32 with any address as long as it ends in ``.json``
 * The json returns all numbers as floats. This is what the python script on the Raspberry Pi is expecting when it recieves the data.
 * The config file is validated against a json schema that is embedded in the ``config.py`` file. If this does not validate successfully the server will log an emergency and throw to prevent damage to the physical hardware.
+* All the code for the actual server is located in the ``roles/install-vivpi/files`` folder.
