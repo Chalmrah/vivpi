@@ -1,0 +1,38 @@
+{
+    "data": {
+        "sensorIpAddress": "10.0.10.230",
+        "thingspeakKey": "",
+        "thingspeakEnabled": false
+    },
+    "temperatures": {
+        "maxDayTemp": 37.00, 
+        "minDayTemp": 34.00,
+        "maxNightTemp": 34.00,
+        "minNightTemp": 30.00
+    },
+    "humidity": {
+        "maxHumidity": 80.00,
+        "minHumidity": 60.00
+    },
+    "time": {
+        "dayStart": 9,
+        "nightStart": 21
+    },
+    "switches": {
+        "lightSwitch" : 1,
+        "tempSwitch" : 2,
+        "misterSwitch" : 3,
+        "foggerSwitch" : 4        
+    },
+    "logging": {
+        "level": "INFO",
+        "path": ""
+    },
+    "telegram": {
+        "botToken": "",
+        "users":[
+            "",
+            ""
+        ]
+    }
+}

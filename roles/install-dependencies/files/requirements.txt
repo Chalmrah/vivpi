@@ -1,0 +1,5 @@
+requests==2.25.1
+energenie==1.0.1
+RPi.GPIO==0.7.0
+jsonschema==3.2.0
+python-telegram-bot==13.4.1

@@ -1,0 +1,9 @@
+[Unit]
+Description=VivPi terranium lights service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 install_location/lights.py
+
+[Install]
+WantedBy=default.target

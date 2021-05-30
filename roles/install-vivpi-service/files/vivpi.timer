@@ -1,0 +1,12 @@
+[Unit]
+Description=VivPi terranium timer service
+
+[Timer]
+OnUnitActiveSec=30s
+OnBootSec=30s
+OnCalendar=*:*:0/20
+Persistent=true
+Unit=vivpi.service
+
+[Install]
+WantedBy=basic.target

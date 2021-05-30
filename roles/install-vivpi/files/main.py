@@ -1,0 +1,58 @@
+
+import src.config as config
+import src.energenie as energenie
+import src.thingspeak as thingspeak
+import src.sensordata as sensordata
+import src.action as action
+import src.telegram as telegram
+import src.logging as log
+
+# Load config
+settings = config.load()
+
+# Validate 
+if(config.validateConfig(settings) == False):
+    telegram.sendAlert("ALERT: Config validation unsuccessful!")
+    raise ValueError("Config did not validate successfully! Please check json file!")
+    
+# Pull data from endpoint
+data = sensordata.read()
+# Time to perform actions and verify the temps against the config
+tempAction = action.verifyTemperature(data) 
+humAction = action.verifyHumidity(data) 
+
+if tempAction is True:
+    energenie.temperatureOn()
+if tempAction is False:
+    energenie.temperatureOff()
+
+mistOrFog = action.verifyMisterOrFogger()
+if mistOrFog is settings['switches']['misterSwitch']:
+    if humAction is True:
+        energenie.misterOn()
+    if humAction is False:
+        energenie.misterOff()
+
+if settings['switches']['foggerSwitch'] != settings['switches']['misterSwitch']:
+    if mistOrFog == settings['switches']['foggerSwitch']: 
+        if humAction is True:
+            energenie.foggerOn()
+        if humAction is False:
+            energenie.foggerOff()
+
+# Post data to thingspeak
+if settings['data']['thingspeakEnabled'] is True:
+    # Default status for sensors.
+    data['heaterStatus'] = 1
+    data['humidityStatus'] = 1
+    # Change if action was taken.
+    if tempAction is True:
+        data['heaterStatus'] = 2
+    if tempAction is False:
+        data['heaterStatus'] = 0
+    if humAction is True:
+        data['humidityStatus'] = 2
+    if humAction is False:
+        data['humidityStatus'] = 0
+    thingspeak.postData(data)
+

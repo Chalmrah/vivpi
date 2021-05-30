@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  gather_facts: False
+  become_method: sudo
+  connection: local
+  vars:
+    install_location: /etc/vivpi
+    
+  roles:
+    - install-dependencies
+    - install-vivpi
+    - install-vivpi-service
+    - install-vivpilights-service
+    - finalize-install
