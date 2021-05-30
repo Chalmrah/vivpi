@@ -37,6 +37,13 @@ From the sensor side:
 
 ## Installation 
 
+### ESP Microcontroller
+
+* Connect to the controller with usb and copy all of the files in the ESP file over to microcontroller.
+* Rename ``boot.example.py`` to ``boot.py`` and configure the wifi connection information.
+
+### Raspberry Pi
+
 * Once the setup for the Raspberry Pi is complete, ensure ansible is installed on it by running ``sudo apt install ansible``
 * Clone this repo to the Pi and configure the playbook.yml to put the install location if you want it somewhere that isnt default.
 * Run the playbook by running ``sudo ansible-playbook playbook.yml``
