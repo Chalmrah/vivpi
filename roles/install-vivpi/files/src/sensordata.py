@@ -3,10 +3,10 @@ import src.config as config
 import src.logging as log
 import requests # http requests
 import json
+from time import sleep # wait
 #import re #regex parser
 #import lxml # XML parder
 #from bs4 import BeautifulSoup as bs # html parser
-#from time import sleep # wait
 #
 #
 #def read():
