@@ -2,7 +2,7 @@
 Description=VivPi terranium lights service
 
 [Service]
-Type=oneshot
+Type=simple
 ExecStart=/usr/bin/python3 install_location/lights.py
 TimeoutSec=60
 
