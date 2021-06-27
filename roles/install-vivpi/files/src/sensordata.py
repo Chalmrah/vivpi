@@ -69,14 +69,16 @@ def read():
 # Write status to file to check if heater is already on to prevent it constantly trying to turn on or off a device?
 
 def getContent():
+    url = 'http://'+ settings['data']['sensorIpAddress'] + '/data.json'
     for i in range(1,3):
+        if i == 3:
+            log.logError("Final attempt has failed. Alerting...")
+            telegram.sendAlert("Collecting sensor data has failed! Check sensor health!")
         try:
-            req = requests.get('http://'+ settings['data']['sensorIpAddress'] + '/data.json')
+            req = requests.get(url,timeout=4)
             if req.status_code == 200:
                 return req.content
         except:
-            log.logError("Failure getting web data attempt %s. Sleeping 10 seconds before trying again." % i)
-            sleep(10)
-    if i == 3:
-        log.logError("Final attempt has failed. Alerting...")
-        telegram.sendAlert("Collecting sensor data has failed! Check sensor health!")
+            log.logError("Failure getting web data attempt %s. Sleeping 2 seconds before trying again." % i)
+            sleep(2)
+    
