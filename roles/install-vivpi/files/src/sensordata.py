@@ -79,6 +79,4 @@ def getContent():
             sleep(10)
     if i == 3:
         log.logError("Final attempt has failed. Alerting...")
-        telegram.sendAlert("Collecting sensor data has failed at! Check sensor health!")
-        
-
+        telegram.sendAlert("Collecting sensor data has failed! Check sensor health!")
