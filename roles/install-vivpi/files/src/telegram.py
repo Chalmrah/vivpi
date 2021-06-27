@@ -7,7 +7,7 @@ settings = config.load()
 bot = telegram.Bot(token=settings['telegram']['botToken'])
 
 def listener():
-    return null
+    return ""
 
 def sendAlert(message):
     for user in settings['telegram']['users']:
