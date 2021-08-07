@@ -100,12 +100,22 @@ def web_page(conn):
 
 def json(conn):  
     dict = {}
-    dict['warmTemperature'] = float(warmSensor.temperature)
-    dict['warmPressure'] = float(warmSensor.pressure)
-    dict['warmHumidity'] = float(warmSensor.humidity)
-    dict['coldTemperature'] = float(coldSensor.temperature)
-    dict['coldPressure'] = float(coldSensor.pressure)
-    dict['coldHumidity'] = float(coldSensor.humidity)
+    if warmError = 0:
+        dict['warmTemperature'] = float(warmSensor.temperature)
+        dict['warmPressure'] = float(warmSensor.pressure)
+        dict['warmHumidity'] = float(warmSensor.humidity)
+    else:
+        dict['warmTemperature'] = float(0)
+        dict['warmPressure'] = float(0)
+        dict['warmHumidity'] = float(0)
+    if coldError = 0:
+        dict['coldTemperature'] = float(coldSensor.temperature)
+        dict['coldPressure'] = float(coldSensor.pressure)
+        dict['coldHumidity'] = float(coldSensor.humidity)
+    else:
+        dict['coldTemperature'] = float(0)
+        dict['coldPressure'] = float(0)
+        dict['coldHumidity'] = float(0)
     json = ujson.dumps(dict)
     conn.send('HTTP/1.1 200 OK\n')
     conn.send('Content-Type: application/json\n\n')
@@ -118,8 +128,22 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(('', 80))
 s.listen(5)
 
-warmSensor = BME280.BME280(i2c=warmSens)
-coldSensor = BME280.BME280(i2c=coldSens)
+warmError = 0
+coldError = 0
+
+try:
+    warmSensor = BME280.BME280(i2c=warmSens)
+    print('Loaded warm sensor')
+except:
+    warmError = 1
+    print('Warm sensor failed. Using bad data to alert')
+
+try:
+    coldSensor = BME280.BME280(i2c=coldSens)
+    print('Loaded cold sensor')
+except:
+    coldError = 1
+    print('Cold sensor failed. Using bad data to alert')
 
 print('Server ready')
 while True:
