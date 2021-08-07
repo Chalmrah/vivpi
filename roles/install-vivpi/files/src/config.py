@@ -30,7 +30,10 @@ def validateConfig(settings):
             "type": "object",
             "properties" : {
                 "maxHumidity" : {"type" : "number",},
-                "minHumidity" : {"type" : "number",}
+                "minHumidity" : {"type" : "number",},
+                "useColdHumidity" : {"type" : "boolean"},
+                "useTimedMister" : {"type" : "boolean"},
+                "timedMisterSeconds" : {"type" : "number"},
             },
             "required": ["humidityMax","humidityMin"]
         },
