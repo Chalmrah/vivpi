@@ -19,11 +19,11 @@ if(config.validateConfig(settings) == False):
 data = sensordata.read()
 
 # Validate data
-if data['coldTemperature'] = 0:
+if data['coldTemperature'] == 0:
     telegram.sendAlert('Cold sensor not responding!')
     if settings['humidity']['useColdHumidity'] is True:
         raise Exception('Cold sensor not responding. Failing to prevent false data processing!')
-if data['warmTemperature'] = 0:
+if data['warmTemperature'] == 0:
     telegram.sendAlert('Warm sensor not responding! Script will halt until this is resolved!')
     raise Exception('Warm sensor not responding. Failing to prevent false data processing!')
 

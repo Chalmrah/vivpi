@@ -100,7 +100,7 @@ def web_page(conn):
 
 def json(conn):  
     dict = {}
-    if warmError = 0:
+    if warmError == 0:
         dict['warmTemperature'] = float(warmSensor.temperature)
         dict['warmPressure'] = float(warmSensor.pressure)
         dict['warmHumidity'] = float(warmSensor.humidity)
@@ -108,7 +108,7 @@ def json(conn):
         dict['warmTemperature'] = float(0)
         dict['warmPressure'] = float(0)
         dict['warmHumidity'] = float(0)
-    if coldError = 0:
+    if coldError == 0:
         dict['coldTemperature'] = float(coldSensor.temperature)
         dict['coldPressure'] = float(coldSensor.pressure)
         dict['coldHumidity'] = float(coldSensor.humidity)
