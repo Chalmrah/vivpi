@@ -42,3 +42,9 @@ def lightOn():
 def lightOff():
     log.logInfo("Switching off light")
     switch_off(lightSwitch)
+
+def misterOnTimed(seconds):
+    log.logInfo("Switching on mister for %s seconds" % seconds)
+    switch_on(misterSwitch)
+    sleep(seconds)
+    switch_off(misterSwitch)
