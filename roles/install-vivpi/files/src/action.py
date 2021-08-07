@@ -47,7 +47,10 @@ def verifyTemperature(data):
     return action
 
 def verifyHumidity(data):
-    hum = float(data['warmHumidity'])
+    if settings['humidity']['useColdHumidity'] is True:
+        hum = float(data['coldHumidity'])
+    else:
+        hum = float(data['warmHumidity'])
     minHum = float(settings['humidity']['minHumidity'])
     maxHum = float(settings['humidity']['maxHumidity'])
     # Default to do nothing
