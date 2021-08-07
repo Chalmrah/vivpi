@@ -17,6 +17,16 @@ if(config.validateConfig(settings) == False):
     
 # Pull data from endpoint
 data = sensordata.read()
+
+# Validate data
+if data['coldTemperature'] = 0:
+    telegram.sendAlert('Cold sensor not responding!')
+    if settings['humidity']['useColdHumidity'] is True:
+        raise Exception('Cold sensor not responding. Failing to prevent false data processing!')
+if data['warmTemperature'] = 0:
+    telegram.sendAlert('Warm sensor not responding! Script will halt until this is resolved!')
+    raise Exception('Warm sensor not responding. Failing to prevent false data processing!')
+
 # Time to perform actions and verify the temps against the config
 tempAction = action.verifyTemperature(data) 
 humAction = action.verifyHumidity(data) 
@@ -29,7 +39,10 @@ if tempAction is False:
 mistOrFog = action.verifyMisterOrFogger()
 if mistOrFog is settings['switches']['misterSwitch']:
     if humAction is True:
-        energenie.misterOn()
+        if settings['humidity']['useTimedMister'] is True:
+            energenie.misterOnTimed(settings['humidity']['timedMisterSeconds'])
+        else:
+            energenie.misterOn()
     if humAction is False:
         energenie.misterOff()
 
