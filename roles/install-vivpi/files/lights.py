@@ -13,5 +13,7 @@ isDay = action.isDuringDay(settings['time']['dayStart'],settings['time']['nightS
 
 if isDay:
     energenie.lightOn()
+    energenie.foggerOff() # Makes sure fogger is off
+    energenie.misterOff() # Makes sure mister is off
 else:
     energenie.lightOff()

@@ -36,22 +36,28 @@ if tempAction is True:
 if tempAction is False:
     energenie.temperatureOff()
 
-mistOrFog = action.verifyMisterOrFogger()
-if mistOrFog is settings['switches']['misterSwitch']:
+if settings['humidity']['ignoreMister'] is True:
     if humAction is True:
-        if settings['humidity']['useTimedMister'] is True:
-            energenie.misterOnTimed(settings['humidity']['timedMisterSeconds'])
-        else:
-            energenie.misterOn()
+        energenie.foggerOn()
     if humAction is False:
-        energenie.misterOff()
-
-if settings['switches']['foggerSwitch'] != settings['switches']['misterSwitch']:
-    if mistOrFog == settings['switches']['foggerSwitch']: 
+        energenie.foggerOff()
+else:
+    mistOrFog = action.verifyMisterOrFogger()
+    if mistOrFog is settings['switches']['misterSwitch']:
         if humAction is True:
-            energenie.foggerOn()
+            if settings['humidity']['useTimedMister'] is True:
+                energenie.misterOnTimed(settings['humidity']['timedMisterSeconds'])
+            else:
+                energenie.misterOn()
         if humAction is False:
-            energenie.foggerOff()
+            energenie.misterOff()
+
+    if settings['switches']['foggerSwitch'] != settings['switches']['misterSwitch']:
+        if mistOrFog == settings['switches']['foggerSwitch']: 
+            if humAction is True:
+                energenie.foggerOn()
+            if humAction is False:
+                energenie.foggerOff()
 
 # Post data to thingspeak
 if settings['data']['thingspeakEnabled'] is True:

@@ -12,7 +12,11 @@
     },
     "humidity": {
         "maxHumidity": 80.00,
-        "minHumidity": 60.00
+        "minHumidity": 70.00,
+        "useColdHumidity": true,
+        "useTimedMister": true,
+        "timedMisterSeconds": 8,
+        "ignoreMister": false
     },
     "time": {
         "dayStart": 9,

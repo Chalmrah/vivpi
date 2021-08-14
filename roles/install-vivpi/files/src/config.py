@@ -34,6 +34,7 @@ def validateConfig(settings):
                 "useColdHumidity" : {"type" : "boolean"},
                 "useTimedMister" : {"type" : "boolean"},
                 "timedMisterSeconds" : {"type" : "number"},
+                "ignoreMister" : {"type" : "boolean"}
             },
             "required": ["humidityMax","humidityMin"]
         },
