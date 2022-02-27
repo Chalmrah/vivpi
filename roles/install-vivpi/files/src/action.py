@@ -1,6 +1,6 @@
 import src.config as config
-import src.energenie as energenie
 import src.logging as log
+import src.telegram as telegram
 from datetime import datetime 
 
 settings = config.load()
@@ -16,33 +16,30 @@ def isDuringDay(dayStart, nightStart, currentTime):
 
 def verifyTemperature(data):
     temp = float(data['warmTemperature'])
-    maxTempDay = float(settings['temperatures']['maxDayTemp'])
-    maxTempNight = float(settings['temperatures']['maxNightTemp'])
-    minTempDay = float(settings['temperatures']['minDayTemp'])
-    minTempNight = float(settings['temperatures']['minNightTemp'])
     isDay = isDuringDay(settings['time']['dayStart'],settings['time']['nightStart'],currentHour)
     # Default to nothing 
     action = None
     if isDay:
-        log.logDebug("Is day")
-
-        if temp > maxTempDay:
-            log.logDebug("Temperature too high, turn off")
-            action = False
-
-        if temp < minTempDay:
-            log.logDebug("Temperature too low, turn on")
-            action = True
+        maxTemp = float(settings['temperatures']['maxDayTemp'])
+        minTemp = float(settings['temperatures']['minDayTemp'])
+        alertTemp = minTemp - 1
+        log.logDebug("Using daytime thresholds of maxTemp: {}, minTemp: {}, and alertTemp: {}".format(maxTemp, minTemp, alertTemp))
     else:
-        log.logDebug("Is night")
+        maxTemp = float(settings['temperatures']['maxNightTemp'])
+        minTemp = float(settings['temperatures']['minNightTemp'])
+        alertTemp = minTemp - 1      
+        log.logDebug("Using daytime thresholds of maxTemp: {}, minTemp: {}, and alertTemp: {}".format(maxTemp, minTemp, alertTemp))
+        
+    if temp > maxTemp:
+        log.logDebug("Temperature too high, turn off")
+        action = False
 
-        if temp > maxTempNight:
-            log.logDebug("Temperature too high, turn off")
-            action = False
-
-        if temp < minTempNight:
-            log.logDebug("Temperature too low, turn on")
-            action = True
+    if temp < minTemp:
+        log.logDebug("Temperature too low, turn on")
+        action = True
+    
+    if temp < alertTemp:
+        telegram.sendAlert("Temperature Alert!\nCurrent temp: {}C\nAlert threshold: {}C\nCheck vivarium and heater are working!".format(temp, alertTemp))
 
     return action
 
