@@ -8,7 +8,8 @@
         "maxDayTemp": 37.00, 
         "minDayTemp": 34.00,
         "maxNightTemp": 34.00,
-        "minNightTemp": 30.00
+        "minNightTemp": 30.00,
+        "alertThresholdTemp": 1.5
     },
     "humidity": {
         "maxHumidity": 80.00,

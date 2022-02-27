@@ -22,13 +22,12 @@ def verifyTemperature(data):
     if isDay:
         maxTemp = float(settings['temperatures']['maxDayTemp'])
         minTemp = float(settings['temperatures']['minDayTemp'])
-        alertTemp = minTemp - 1
-        log.logDebug("Using daytime thresholds of maxTemp: {}, minTemp: {}, and alertTemp: {}".format(maxTemp, minTemp, alertTemp))
     else:
         maxTemp = float(settings['temperatures']['maxNightTemp'])
         minTemp = float(settings['temperatures']['minNightTemp'])
-        alertTemp = minTemp - 1      
-        log.logDebug("Using daytime thresholds of maxTemp: {}, minTemp: {}, and alertTemp: {}".format(maxTemp, minTemp, alertTemp))
+    
+    alertTemp = minTemp - float(settings['temperatures']['alertThresholdTemp'])
+    log.logDebug("Using daytime thresholds of maxTemp: {}, minTemp: {}, and alertTemp: {}".format(maxTemp, minTemp, alertTemp))
         
     if temp > maxTemp:
         log.logDebug("Temperature too high, turn off")
