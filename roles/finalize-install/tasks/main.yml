@@ -1,4 +1,0 @@
-- name: Reloading systemd daemon
-  become: true
-  service:
-    daemon_reload: true

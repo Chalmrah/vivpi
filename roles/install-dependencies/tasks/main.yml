@@ -1,3 +1,0 @@
-- name: Install specified python requirements from requirements file
-  pip:
-    requirements: roles/install-dependencies/files/requirements.txt

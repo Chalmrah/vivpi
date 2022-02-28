@@ -26,7 +26,7 @@ git clone --depth 1 https://github.com/Chalmrah/vivpi.git $tempDir
 origDir=$(pwd)
 cd "$tempDir"
 
-if [ readlink -e $installLocation ]
+if [ readlink -e $installLocation ] && [ systemctl is-active --quiet vivpi.timer ]
 then
   echo -e "> First time install"
   echo -e ">  Prerequisites"
