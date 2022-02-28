@@ -3,7 +3,7 @@
 #
 # install.sh 
 #
-# Insall script for downloading and installing the vivpi system and associated services
+# Install script for downloading and installing the vivpi system and associated services
 #
 
 # Variables
