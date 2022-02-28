@@ -20,9 +20,8 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # Check if script is downloaded or is curled into sh
-localDir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-
-if 
+#localDir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+#if 
 
 # Download git to temp location
 tempDir=$(mktemp -d)
