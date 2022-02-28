@@ -20,12 +20,14 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # Check if script is downloaded or is curled into sh
-#localDir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-#if 
-
-# Download git to temp location
 tempDir=$(mktemp -d)
-git clone --depth 1 https://github.com/Chalmrah/vivpi.git $tempDir
+localDir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+if [ -f "$localDir/test.sh" ]
+then
+  cp -r $localDir $tempDir
+ else 
+  git clone --depth 1 https://github.com/Chalmrah/vivpi.git $tempDir
+fi
 
 origDir=$(pwd)
 cd "$tempDir"
