@@ -1,0 +1,10 @@
+[Unit]
+Description=VivPi terranium lights service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 install_location/lights.py
+TimeoutSec=60
+
+[Install]
+WantedBy=default.target

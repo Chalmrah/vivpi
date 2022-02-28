@@ -1,0 +1,12 @@
+[Unit]
+Description=VivPi terranium lights timer service
+
+[Timer]
+OnBootSec=30s
+OnCalendar=*:0:0
+Persistent=true
+
+Unit=vivpilights.service
+
+[Install]
+WantedBy=basic.target
