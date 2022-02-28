@@ -4,6 +4,21 @@ The Vivpi service is a python based service written to be a simple smart system 
 The sensors suggested can measure air pressure, humidity, and temperature, and perform actions based on the data recieved.
 In theory, any sensors can be used as long as the sensor data is put onto a web page that can output a json file to be read.
 
+## Installation 
+
+### ESP Microcontroller
+
+* Connect to the controller with usb and copy all of the files in the ESP file over to microcontroller.
+* Rename ``boot.example.py`` to ``boot.py`` and configure the wifi connection information.
+
+### Raspberry Pi
+
+* Run the installation script which can be done without cloning the repo! This script will also update if it detects an existing installation.
+```bash
+curl -sf -L https://raw.githubusercontent.com/Chalmrah/vivpi/main/install.sh | sudo sh
+```
+* The script will also recognise when it is being run locally and not bother cloning the repo.
+
 ## Hardware List
 
 * Raspberry Pi 3
@@ -34,17 +49,6 @@ From the sensor side:
 |      |SDA -> 21          |      |SDA -> 14 
 |______|SCL -> 22          |______|SCL -> 18
 ```
-
-## Installation 
-
-### ESP Microcontroller
-
-* Connect to the controller with usb and copy all of the files in the ESP file over to microcontroller.
-* Rename ``boot.example.py`` to ``boot.py`` and configure the wifi connection information.
-
-### Raspberry Pi
-
-* Run the installation script which can be done without cloning the repo! This script will also update if it detects an existing installation.
 
 ## Configuration
 
