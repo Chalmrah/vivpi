@@ -22,7 +22,8 @@ def validateConfig(settings):
                 "maxDayTemp" : {"type" : "number",},
                 "maxNightTemp" : {"type" : "number",},
                 "minDayTemp" : {"type" : "number",},
-                "minNightTemp" : {"type" : "number",}
+                "minNightTemp" : {"type" : "number",},
+                "alertTempThreshold": {"type": "number"}
             },
             "required": ["dayTemp","nightTemp"]
         },
