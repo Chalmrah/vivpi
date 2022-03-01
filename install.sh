@@ -10,11 +10,11 @@
 installLocation="/etc/vivpi"
 
 # Initialisation
-echo -e ""
-echo -e "Vivpi Installation"
-echo -e ""
+echo " =================="
+echo " Vivpi Installation"
+echo " =================="
 
-if [ "$EUID" -ne 0 ]
+if [ $EUID -ne 0 ]
   then echo "! Please run as root to ensure install completes correctly!"
   exit
 fi
@@ -34,26 +34,30 @@ cd "$tempDir"
 
 if [ readlink -e $installLocation ] && [ systemctl is-active --quiet vivpi.timer ]
 then
-  echo -e "> First time install"
-  echo -e ">  Prerequisites"
+  echo "> First time install"
+  echo ">  Prerequisites"
   apt install python3 python3-pip python-dev -y
   pip3 install -y -r $tempDir/requirements.txt
   mkdir $installLocation
 else
-  echo -e "> Upgrade mode"
+  echo "> Upgrade mode"
 fi
 
-echo -e ">  Copying files"
+echo ">  Copying files"
 cp -ur vivpi/ $installLocation
 
-echo -e ">  Installing services"
+echo ">  Installing services"
 for service in `ls -d $tempDir/services/*`; do
   sed -i "s#install_Location#${installLocation}#g" $service
   cp -u $service /etc/systemd/system/
   systemctl enable /etc/systemd/system/$service
 done
 
-echo -e "Reloading systemctl"4
+echo "> Reloading systemctl"
 systemctl daemon-reload
 
 cd "$origDir"
+
+echo " ======================"
+echo " Installation Complete!"
+echo " ======================"
