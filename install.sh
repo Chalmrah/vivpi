@@ -50,7 +50,7 @@ echo ">  Installing services"
 for service in `ls -d $tempDir/services/*`; do
   sed -i "s#install_Location#${installLocation}#g" $service
   cp -u $service /etc/systemd/system/
-  serviceName = echo $service | sed "s/.*\///"
+  serviceName=$(basename $service)
   systemctl enable /etc/systemd/system/$serviceName
 done
 
@@ -58,6 +58,9 @@ echo "> Reloading systemctl"
 systemctl daemon-reload
 
 cd "$origDir"
+
+echo "> Cleaning up temp directory"
+rm -r $tempDir
 
 echo " ======================"
 echo " Installation Complete!"
