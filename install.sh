@@ -14,6 +14,8 @@ echo " =================="
 echo " Vivpi Installation"
 echo " =================="
 
+whoami
+
 if [ $EUID -ne 0 ]
   then echo "! Please run as root to ensure install completes correctly!"
   exit
