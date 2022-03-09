@@ -24,7 +24,7 @@ fi
 # Check if script is downloaded or is curled into sh
 tempDir=$(mktemp -d)
 localDir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-if [ -f "$localDir/test.sh" ]
+if [ -f "$localDir/install.sh" ]
 then
   cp -r $localDir $tempDir
  else 
