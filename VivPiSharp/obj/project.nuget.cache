@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "oca6cg0oBszg4E+M7wnTlhc6SmU+SYF8iMpTxFMqo1wixwQF9Bm8gwYzsh1umb02ytEdwzgAILjLSjHCG+0Tow==",
+  "success": true,
+  "projectFilePath": "/source/chal/vivpi/VivPiSharp/VivPiSharp.csproj",
+  "expectedPackageFiles": [
+    "/home/francis/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.3/microsoft.aspnetcore.app.ref.7.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
