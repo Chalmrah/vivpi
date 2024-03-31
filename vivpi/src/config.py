@@ -12,9 +12,12 @@ def validateConfig(settings):
             "properties" : {
                 "sensorIpAddress" : {"type" : "string"},
                 "thingspeakKey" : {"type" : "string",},
-                "thingspeakEnabled" : {"type" : "boolean"}
+                "thingspeakEnabled" : {"type" : "boolean"},
+                "nodepingCheckId" : {"type" : "string",},
+                "nodepingCheckToken" : {"type" : "string",},
+                "nodepingEnabled": {"type" : "boolean"}
             },
-            "required": ["sensorIpAddress","thingspeakEnabled"]
+            "required": ["sensorIpAddress","thingspeakEnabled","nodepingEnabled"]
         },
         "temperatures": {
             "type": "object",

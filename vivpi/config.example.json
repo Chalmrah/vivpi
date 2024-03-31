@@ -2,7 +2,10 @@
     "data": {
         "sensorIpAddress": "10.0.10.230",
         "thingspeakKey": "",
-        "thingspeakEnabled": false
+        "thingspeakEnabled": false,
+        "nodepingEnabled" : true,
+        "nodepingCheckToken": "",
+        "nodepingCheckId": ""
     },
     "temperatures": {
         "maxDayTemp": 37.00, 

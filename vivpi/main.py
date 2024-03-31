@@ -6,6 +6,7 @@ import src.sensordata as sensordata
 import src.action as action
 import src.telegram as telegram
 import src.logging as log
+import src.nodeping as nodeping
 
 # Load config
 settings = config.load()
@@ -75,3 +76,5 @@ if settings['data']['thingspeakEnabled'] is True:
         data['humidityStatus'] = 0
     thingspeak.postData(data)
 
+if settings['data']['nodepingEnabled'] is True:
+    nodeping.postHeartbeat()
